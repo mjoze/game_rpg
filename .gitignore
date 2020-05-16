@@ -1,4 +1,6 @@
 # Byte-compiled / optimized / DLL files
+/rpg
+
 __pycache__/
 *.py[cod]
 *$py.class
