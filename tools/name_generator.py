@@ -1,10 +1,15 @@
+import random
+
+
 def generate_women():
-    return "kobieta"
+    female_names = ["Daisy", "Monica", "Anna", "Lisa"]
+    return random.randrange(len(female_names))
 
 
 def generate_men():
-    return "menszczyzna"
+    male_names = ["Mark", "Scott", "Brian", "Peter"]
+    return random.randrange(len(male_names))
 
 
 if __name__ == "__main__":
-    name_generator()
+    print("Name generator")

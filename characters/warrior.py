@@ -1,18 +1,26 @@
 from tools import name_generator as ng
+from tools import equipment_generator as eg
 import random
 
 
 class Warrior:
 
     health = 10
+    energy = 10
 
-    def __init__(self, character='human', sex="gender", name='Anonymous'):
+    def __init__(self, character='human', sex="gender", name='Anonymous', equipment=""):
         self.character = character
         self.sex = sex
         self.name = name
+        self.equipment = equipment
 
     def __repr__(self):
-        return 'race: {} - sex: {} - name: {} - health: {}'.format(self.character, self.sex, self.name, self.health)
+        return 'race: {} - sex: {} - name: {} - health: {} - energy: {} - equipment: {}'.format(self.character,
+                                                                                                self.sex,
+                                                                                                self.name,
+                                                                                                self.health,
+                                                                                                self.energy,
+                                                                                                self.equipment)
 
     def generate_character(self):
         characters = ['human', 'elf', 'ork']
@@ -45,6 +53,9 @@ class Warrior:
             self.name = ng.generate_women()
         elif self.sex == "male":
             self.name = ng.generate_men()
+
+    def generate_equipment(self):
+        self.equipment = eg.equipment_generator()
 
 
 if __name__ == "__main__":
