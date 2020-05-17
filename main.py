@@ -1,9 +1,12 @@
 from characters import Player
 from places.city import church
+from places.city import gymnasion
+
 
 # create places
 place_church = church.Church()
-places = [place_church]
+place_gymnasion = gymnasion.Gymnasion()
+places = [place_church, place_gymnasion]
 
 
 def create_player():
@@ -20,26 +23,46 @@ def create_player():
 
 def player_options():
     # player options
-    print("place in city")
-    for i in places:
-        print(i)
+
+    while player.health > 0 and player.energy > 0:
+        print("place in city")
+        for i in places:
+            print(i)
+        choice = input("your place?")
+        if choice == 'church':
+            if place_church.god_strength > 0:
+                handle_places_church()
+        elif choice == 'gymnasion':
+            handle_places_gymnasion()
+        else:
+            print("breakdance")
 
 
 def handle_places_church():
     # church
-    print("You can walk to church and pray. ")
 
     while place_church.god_strength > 0:
-        decision = input('What is your decision.').lower()
+        print("You can walk to church and pray. ")
+        decision = input('What is your decision? Or press "q" to quit').lower()
         if decision == "walk":
             player.walk(place_church)
         elif decision == "pray":
             place_church.pray(player)
+        elif decision == "q":
+            return
+        else:
+            print("breakdance")
         print(player)
 
 
+def handle_places_gymnasion():
+    place_gymnasion.up_energy(player)
+    print(player)
+
+
 player = create_player()
-handle_places_church()
+player_options()
+# handle_places_gymnasion()
 
 
 def continue_game():
