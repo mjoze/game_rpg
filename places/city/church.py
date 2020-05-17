@@ -13,7 +13,7 @@ class Church:
         print("Your prayers have been answered: HP + 10")
         self.god_strength -= 5
         if self.god_strength <= 0:
-            print("god is dead")
+            print("god is dead. Church is collapse")
         else:
             return hero.up_health(10)
 
