@@ -15,7 +15,8 @@ def create_player():
     print("Create a new player")
     player = Player.Player()
     player.generate_character()
-    player.type_name()
+    # player.type_name()
+    player.generate_name()
     player.generate_equipment()
     print(player)
     return player

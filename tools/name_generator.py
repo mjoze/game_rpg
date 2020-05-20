@@ -3,12 +3,12 @@ import random
 
 def generate_women():
     female_names = ["Daisy", "Monica", "Anna", "Lisa"]
-    return random.randrange(len(female_names))
+    return female_names[0]
 
 
 def generate_men():
     male_names = ["Mark", "Scott", "Brian", "Peter"]
-    return random.randrange(len(male_names))
+    return male_names[0]
 
 
 if __name__ == "__main__":

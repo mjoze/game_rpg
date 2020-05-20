@@ -49,6 +49,7 @@ class Warrior:
         self.name = _name
 
     def generate_name(self):
+
         if self.sex == "female":
             self.name = ng.generate_women()
         elif self.sex == "male":
