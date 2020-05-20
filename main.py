@@ -26,15 +26,21 @@ def player_options():
     # player options
 
     while player.health > 0 and player.energy > 0:
-        print("place in city")
+        print("||||    Place in city    ||||")
         for i in places:
             print(i)
-        choice = input("your place?")
+        choice = input("-- Your place?")
         if choice == 'church':
-            if place_church.god_strength > 0:
-                handle_places_church()
+            if place_church.mission_goal == 1:
+                print( "Church not available")
+            else:
+                if place_church.god_strength > 0:
+                    handle_places_church()
         elif choice == 'gymnasion':
-            handle_places_gymnasion()
+            if place_church.mission_goal == 1:
+                print( "gymnasion not available")
+            else:
+                handle_places_gymnasion()
         else:
             print("breakdance")
 
@@ -43,12 +49,16 @@ def handle_places_church():
     # church
 
     while place_church.god_strength > 0:
-        print("You can walk to church and pray. ")
+
+        print("You can walk to church, pray or get quest.  ")
         decision = input('What is your decision? Or press "q" to quit').lower()
         if decision == "walk":
             player.walk(place_church)
         elif decision == "pray":
             place_church.pray(player)
+        elif decision == "quest":
+            print("misja")
+            return place_church.mission()
         elif decision == "q":
             return
         else:
@@ -57,8 +67,17 @@ def handle_places_church():
 
 
 def handle_places_gymnasion():
-    place_gymnasion.up_energy(player)
     print(player)
+    if place_gymnasion.mission_goal == 0:
+        print("You are in gymnasion. You can train or get quest.  ")
+        decision = input('What is your decision? Or press "q" to quit').lower()
+        if decision == "quest":
+            print("misja")
+            return place_gymnasion.mission()
+        elif decision == "q":
+            return
+        else:
+            print("breakdance")
 
 
 player = create_player()
