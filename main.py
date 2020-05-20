@@ -1,6 +1,5 @@
 from characters import Player
-from places.city import church
-from places.city import gymnasion
+from places.city import church, gymnasion
 
 
 # create places
