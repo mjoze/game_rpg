@@ -1,5 +1,6 @@
 from characters import Player
 from places.city import church, gymnasion
+from src import places_ascii
 
 
 def create_player():
@@ -26,8 +27,11 @@ def player_options(_player, _places, _place_church, _place_gymnasion):
 
     while _player.health > 0 and _player.energy > 0:
         print("||||    Place in city    ||||")
+        print(places_ascii.city())
+        print("#################################")
         for i in places:
             print(i)
+        print("#################################")
         print("Quit -- press 'q'")
         print("Player Statistics -- press 's'")
         choice = input("-- Your place?").lower()
@@ -36,12 +40,14 @@ def player_options(_player, _places, _place_church, _place_gymnasion):
                 print("Church not available")
             else:
                 if _place_church.god_strength > 0:
+                    print(places_ascii.church_ascii())
                     handle_places_church(_place_church, _player)
         elif choice == 'gymnasion':
             if _place_gymnasion.mission_goal == 1:
                 print("gymnasion not available")
             else:
-                _handle_places_gymnasion(_place_gymnasion, _player)
+                print(places_ascii.gymnasion_ascii())
+                handle_places_gymnasion(_place_gymnasion, _player)
         elif choice == "q":
             return
         elif choice == "s":

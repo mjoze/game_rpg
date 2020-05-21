@@ -1,5 +1,6 @@
 from tools import battle
 from characters.Enemy import Enemy
+from src import places_ascii
 
 
 class Church:
@@ -16,6 +17,7 @@ class Church:
             else "empty church without god. No options") if self.mission_goal == 0 else "Church -- building not available"
 
     def pray(self, hero):
+        print(places_ascii.church_pray())
         print("Your prayers have been answered: HP + 10")
         self.god_strength -= 8
         if self.god_strength <= 0:
@@ -30,6 +32,7 @@ class Church:
 
     def mission(self, hero):
         print("Kill the evil god")
+        print(places_ascii.church_mission())
         god_enemy = Enemy("Zeus", "God", "male")
         battle.battle(hero, god_enemy)
         self.mission_goal += 1

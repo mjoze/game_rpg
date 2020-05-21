@@ -1,5 +1,6 @@
 from tools.battle import battle
 from characters.Enemy import Enemy
+from src import places_ascii
 
 
 class Gymnasion:
@@ -16,10 +17,12 @@ class Gymnasion:
 
     def up_energy(self, player):
         print("you train ")
+        print(places_ascii.gymnasion_train())
         return player.up_energy(4)
 
     def mission(self, hero):
         print("Kill the evil master")
+        print(places_ascii.gymnasion_mission())
         master_enemy = Enemy("Bruce Lee", "Monkey", "male")
-        battle(hero,master_enemy)
+        battle(hero, master_enemy)
         self.mission_goal += 1
