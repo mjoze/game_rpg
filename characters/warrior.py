@@ -5,7 +5,7 @@ import random
 
 class Warrior:
 
-    health = 10
+    health = 20
     energy = 10
 
     def __init__(self, character='human', sex="gender", name='Anonymous', equipment=""):

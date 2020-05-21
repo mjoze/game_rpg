@@ -1,3 +1,7 @@
+from tools.battle import battle
+from characters.Enemy import Enemy
+
+
 class Gymnasion:
 
     mission_goal = 0
@@ -14,7 +18,8 @@ class Gymnasion:
         print("you train ")
         return player.up_energy(4)
 
-    def mission(self):
+    def mission(self, hero):
         print("Kill the evil master")
+        master_enemy = Enemy("Bruce Lee", "Monkey", "male")
+        battle(hero,master_enemy)
         self.mission_goal += 1
-

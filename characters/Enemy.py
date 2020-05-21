@@ -20,7 +20,7 @@ class Enemy():
             self.health = self.health - injured
 
     def attack(self):
-        print("Attack", self.power)
+        print("Attack power:", self.power)
         return self.power
 
 

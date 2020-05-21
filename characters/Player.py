@@ -24,4 +24,5 @@ class Player(warrior.Warrior):
         self.energy += _energy
 
     def fight(self):
-        return 3
+        a = self.equipment[1]
+        return a

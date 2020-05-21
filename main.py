@@ -21,27 +21,37 @@ def create_player():
     return player
 
 
-def player_options():
+def player_options(player):
     # player options
 
     while player.health > 0 and player.energy > 0:
         print("||||    Place in city    ||||")
         for i in places:
             print(i)
-        choice = input("-- Your place?")
+        print("Quit -- press 'q'")
+        print("Player Statistics -- press 's'")
+        choice = input("-- Your place?").lower()
         if choice == 'church':
             if place_church.mission_goal == 1:
-                print( "Church not available")
+                print("Church not available")
             else:
                 if place_church.god_strength > 0:
                     handle_places_church()
         elif choice == 'gymnasion':
-            if place_church.mission_goal == 1:
-                print( "gymnasion not available")
+            if place_gymnasion.mission_goal == 1:
+                print("gymnasion not available")
             else:
-                handle_places_gymnasion()
+                handle_places_gymnasion(place_gymnasion, player)
+        elif choice == "q":
+            return
+        elif choice == "s":
+            show_player_stats(player)
         else:
             print("breakdance")
+
+
+def show_player_stats(_player):
+    print("energy: {}. Hp: {}. equipment: {}.".format(_player.energy, _player.health, _player.equipment))
 
 
 def handle_places_church():
@@ -57,22 +67,24 @@ def handle_places_church():
             place_church.pray(player)
         elif decision == "quest":
             print("misja")
-            return place_church.mission()
+            return place_church.mission(player)
         elif decision == "q":
             return
         else:
             print("breakdance")
-        print(player)
+        return player
 
 
-def handle_places_gymnasion():
+def handle_places_gymnasion(_place_gymnasion, _player):
     print(player)
-    if place_gymnasion.mission_goal == 0:
+    if _place_gymnasion.mission_goal == 0:
         print("You are in gymnasion. You can train or get quest.  ")
         decision = input('What is your decision? Or press "q" to quit').lower()
         if decision == "quest":
             print("misja")
-            return place_gymnasion.mission()
+            return _place_gymnasion.mission(_player)
+        elif decision == "train":
+            return _place_gymnasion.up_energy(_player)
         elif decision == "q":
             return
         else:
@@ -80,8 +92,11 @@ def handle_places_gymnasion():
 
 
 player = create_player()
-player_options()
-# handle_places_gymnasion()
+player_options(player)
+
+
+def start_game():
+    pass
 
 
 def continue_game():
