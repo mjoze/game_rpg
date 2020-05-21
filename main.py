@@ -2,12 +2,6 @@ from characters import Player
 from places.city import church, gymnasion
 
 
-# create places
-place_church = church.Church()
-place_gymnasion = gymnasion.Gymnasion()
-places = [place_church, place_gymnasion]
-
-
 def create_player():
 
     # create player
@@ -21,10 +15,10 @@ def create_player():
     return player
 
 
-def player_options(player):
+def player_options(_player, _places, _place_church, _place_gymnasion):
     # player options
 
-    while player.health > 0 and player.energy > 0:
+    while _player.health > 0 and _player.energy > 0:
         print("||||    Place in city    ||||")
         for i in places:
             print(i)
@@ -32,20 +26,20 @@ def player_options(player):
         print("Player Statistics -- press 's'")
         choice = input("-- Your place?").lower()
         if choice == 'church':
-            if place_church.mission_goal == 1:
+            if _place_church.mission_goal == 1:
                 print("Church not available")
             else:
-                if place_church.god_strength > 0:
-                    handle_places_church()
+                if _place_church.god_strength > 0:
+                    handle_places_church(_place_church, _player)
         elif choice == 'gymnasion':
-            if place_gymnasion.mission_goal == 1:
+            if _place_gymnasion.mission_goal == 1:
                 print("gymnasion not available")
             else:
-                handle_places_gymnasion(place_gymnasion, player)
+                _handle_places_gymnasion(_place_gymnasion, _player)
         elif choice == "q":
             return
         elif choice == "s":
-            show_player_stats(player)
+            show_player_stats(_player)
         else:
             print("breakdance")
 
@@ -54,25 +48,25 @@ def show_player_stats(_player):
     print("energy: {}. Hp: {}. equipment: {}.".format(_player.energy, _player.health, _player.equipment))
 
 
-def handle_places_church():
+def handle_places_church(_place_church, _player):
     # church
 
-    while place_church.god_strength > 0:
+    while _place_church.god_strength > 0:
 
         print("You can walk to church, pray or get quest.  ")
         decision = input('What is your decision? Or press "q" to quit').lower()
         if decision == "walk":
-            player.walk(place_church)
+            _player.walk(place_church)
         elif decision == "pray":
-            place_church.pray(player)
+            _place_church.pray(player)
         elif decision == "quest":
             print("misja")
-            return place_church.mission(player)
+            return _place_church.mission(player)
         elif decision == "q":
             return
         else:
             print("breakdance")
-        return player
+        return _player
 
 
 def handle_places_gymnasion(_place_gymnasion, _player):
@@ -91,23 +85,14 @@ def handle_places_gymnasion(_place_gymnasion, _player):
             print("breakdance")
 
 
+# create places
+place_church = church.Church()
+place_gymnasion = gymnasion.Gymnasion()
+places = [place_church, place_gymnasion]
+# create player
 player = create_player()
-player_options(player)
+# game
+player_options(player, places, place_church, place_gymnasion)
 
-
-def start_game():
-    pass
-
-
-def continue_game():
-    pass
-
-
-def save_game():
-    pass
-
-
-def quit_game():
-    pass
 
 
