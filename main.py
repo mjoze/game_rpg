@@ -5,14 +5,20 @@ from places.city import church, gymnasion
 def create_player():
 
     # create player
-    print("Create a new player")
-    player = Player.Player()
-    player.generate_character()
-    # player.type_name()
-    player.generate_name()
-    player.generate_equipment()
-    print(player)
-    return player
+    decision = input("Create a new player? YES/NO").lower()
+    if decision == 'yes':
+        _player = Player.Player()
+        _player.generate_character()
+        # player.type_name()
+        _player.generate_name()
+        _player.generate_equipment()
+        print(_player)
+        return _player
+    elif decision == 'no':
+        print("No player, no game!")
+        return False
+    else:
+        create_player()
 
 
 def player_options(_player, _places, _place_church, _place_gymnasion):
@@ -41,7 +47,7 @@ def player_options(_player, _places, _place_church, _place_gymnasion):
         elif choice == "s":
             show_player_stats(_player)
         else:
-            print("breakdance")
+            print("unknown choice")
 
 
 def show_player_stats(_player):
@@ -65,7 +71,7 @@ def handle_places_church(_place_church, _player):
         elif decision == "q":
             return
         else:
-            print("breakdance")
+            print("unknown choice")
         return _player
 
 
@@ -82,7 +88,7 @@ def handle_places_gymnasion(_place_gymnasion, _player):
         elif decision == "q":
             return
         else:
-            print("breakdance")
+            print("unknown choice")
 
 
 # create places
@@ -92,7 +98,8 @@ places = [place_church, place_gymnasion]
 # create player
 player = create_player()
 # game
-player_options(player, places, place_church, place_gymnasion)
+if player:
+    player_options(player, places, place_church, place_gymnasion)
 
 
 
