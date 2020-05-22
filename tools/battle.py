@@ -5,16 +5,16 @@ def battle(player, enemy):
         if decision == "yes":
             if player.health > 0:
                 print("Players attack")
-                a = player.fight()
-                enemy.get_injured(a)
+                attack_player = player.fight()
+                enemy.get_injured(attack_player)
                 print("enemy HP:", enemy.health)
             else:
                 print("player is dead")
                 return
             if enemy.health > 0:
                 print("Enemies attack")
-                b = enemy.attack()
-                player.get_injured(b)
+                enemy_attack = enemy.attack()
+                player.get_injured(enemy_attack)
                 print("player HP:", player.health)
             else:
                 print("enemy is dead")

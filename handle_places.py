@@ -1,50 +1,50 @@
 
-def handle_places_church(_place_church, _player):
+def handle_places_church(new_place_church, new_player):
     # church
 
-    while _place_church.god_strength > 0:
+    while new_place_church.god_strength == 0:
 
         print("You can walk to church, pray or get quest.  ")
         decision = input('What is your decision? Or press "q" to quit').lower()
         if decision == "walk":
-            _player.walk(place_church)
+            new_player.walk(new_place_church)
         elif decision == "pray":
-            _place_church.pray(_player)
+            new_place_church.pray(new_player)
         elif decision == "quest":
             print("misja")
-            return _place_church.mission(_player)
+            return new_place_church.mission(new_player)
         elif decision == "q":
             return
         else:
             print("unknown choice")
-        return _player
+        return new_player
 
 
-def handle_places_gymnasion(_place_gymnasion, _player):
-    print(_player)
-    while _place_gymnasion.mission_goal == 0:
+def handle_places_gymnasion(new_place_gymnasion, new_player):
+    print(new_player)
+    while new_place_gymnasion.mission_goal == 0:
         print("You are in gymnasion. You can train or get quest.  ")
         decision = input('What is your decision? Or press "q" to quit').lower()
         if decision == "quest":
             print("misja")
-            return _place_gymnasion.mission(_player)
+            return new_place_gymnasion.mission(new_player)
         elif decision == "train":
-            _place_gymnasion.up_energy(_player)
+            new_place_gymnasion.up_energy(new_player)
         elif decision == "q":
             return False
         else:
             print("unknown choice")
 
 
-def handle_places_saloon(_place_saloon, _player):
-    while _place_saloon.mission_goal == 0:
+def handle_places_saloon(new_place_saloon, new_player):
+    while new_place_saloon.mission_goal == 0:
         print("You are in saloon. You can drink or get quest.  ")
         decision = input('What is your decision? Or press "q" to quit').lower()
         if decision == "quest":
             print("misja")
-            return _place_saloon.mission()
+            return new_place_saloon.mission()
         elif decision == "drink":
-            _place_saloon.drink()
+            new_place_saloon.drink()
         elif decision == "q":
             return
         else:
